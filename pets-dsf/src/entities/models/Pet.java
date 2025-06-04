@@ -1,5 +1,11 @@
 package entities.models;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import entities.enums.Genero;
 import entities.enums.Tipo;
 
@@ -91,8 +97,44 @@ public class Pet {
                 + ", peso=" + peso + ", raca=" + raca + "]";
     }
 
+    public static String capitalizar(String texto) {
+    if (texto == null || texto.isEmpty()) {
+        return texto;
+    }
+    return texto.substring(0, 1).toUpperCase() + texto.substring(1).toLowerCase();
+    }
+
+    public void cadastrarPet(Pet pet) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmm");
+
+        String arquivo = LocalDateTime.now().format(formatter) + pet.getNome().replaceAll(" ", "").toUpperCase() + ".txt";
+        String pathWriter = "C:\\Studies\\java-playground\\pets-dsf\\src\\pets\\" + arquivo;
+
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathWriter, true))) {
+
+            bw.write("1 - " + pet.getNome());
+            bw.write("\n2 - " + capitalizar(pet.getTipo().toString()));
+            bw.write("\n3 - " + capitalizar(pet.getSexo().toString()));
+            bw.write("\n4 - " + (pet.getendereco().getRua() + 
+            ", " + pet.getendereco().getNum() + 
+            ", " + pet.getendereco().getCidade()));
+            bw.write("\n5 - " + pet.getIdade().toString());
+            bw.write("\n6 - " + pet.getPeso());
+            bw.write("\n7 - " + pet.getRaca());
+            bw.newLine();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
+    
+
     
     
     
 
-}
+

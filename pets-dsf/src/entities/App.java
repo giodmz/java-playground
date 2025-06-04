@@ -71,7 +71,7 @@ public class App {
                 if (nome.isEmpty()) {
                     nome = NAO_INFORMADO;
                 }
-                
+
                 if (nome.trim().split("\\s+").length < 2) {
                     throw new InputException("Por favor insira o nome e o sobrenome.");
                 }
@@ -106,9 +106,10 @@ public class App {
 
                 System.out.println(in.nextLine());
                 Double peso = sc.nextDouble();
+                sc.nextLine();
 
                 System.out.println(in.nextLine());
-                String raca = sc.next();
+                String raca = sc.nextLine();
 
                 if (!raca.matches("^[A-Za-zÀ-ÿ\\s]+$")) {
                     throw new InputException("O nome não pode conter números ou caracteres especiais.");
@@ -118,6 +119,7 @@ public class App {
                 Genero sexo = Genero.valueOf(inputSexo.toUpperCase());
 
                 Pet pet = new Pet(nome, tipo, sexo, endereco, idade, peso, raca);
+                pet.cadastrarPet(pet);
 
                 System.out.println(pet.toString());
                 System.out.println(endereco.toString());
@@ -136,6 +138,8 @@ public class App {
             System.out.println("Erro: " + ex.getMessage());
             cadastroPet();
         }
-    }
 
+    }
 }
+
+    
