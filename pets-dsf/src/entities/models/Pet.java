@@ -1,14 +1,10 @@
 package entities.models;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-
-import entities.PetSearcher;
 import entities.enums.Genero;
 import entities.enums.Tipo;
 
@@ -98,6 +94,65 @@ public class Pet {
                 + ", peso=" + peso + ", raca=" + raca + "]";
     }
 
+
+    
+
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+        result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
+        result = prime * result + ((idade == null) ? 0 : idade.hashCode());
+        result = prime * result + ((peso == null) ? 0 : peso.hashCode());
+        result = prime * result + ((raca == null) ? 0 : raca.hashCode());
+        result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Pet other = (Pet) obj;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        if (tipo != other.tipo)
+            return false;
+        if (sexo != other.sexo)
+            return false;
+        if (idade == null) {
+            if (other.idade != null)
+                return false;
+        } else if (!idade.equals(other.idade))
+            return false;
+        if (peso == null) {
+            if (other.peso != null)
+                return false;
+        } else if (!peso.equals(other.peso))
+            return false;
+        if (raca == null) {
+            if (other.raca != null)
+                return false;
+        } else if (!raca.equals(other.raca))
+            return false;
+        if (endereco == null) {
+            if (other.endereco != null)
+                return false;
+        } else if (!endereco.equals(other.endereco))
+            return false;
+        return true;
+    }
+
     public static String capitalizar(String texto) {
         if (texto == null || texto.isEmpty()) {
             return texto;
@@ -131,7 +186,9 @@ public class Pet {
         }
     }
 
-    public static List<File> buscarPet(File diretorio, String criterio) {
-        return PetSearcher.buscarInterativo(diretorio, criterio);
+    public void buscarPet() {
+        
+
     }
+
 }

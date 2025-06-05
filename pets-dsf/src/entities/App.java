@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class App {
 
             switch (input) {
                 case 1:
-                    cadastroPet();
+                    cadastroPetMenu();
                     break;
                 case 5:
                     menuBuscarDados();
@@ -60,7 +61,7 @@ public class App {
 
     }
 
-    private static void cadastroPet() {
+    private static void cadastroPetMenu() {
         try {
             String txtPath = "C:\\Studies\\java-playground\\pets-dsf\\src\\forms\\formulario.txt";
             final String NAO_INFORMADO = "NÃO INFORMADO";
@@ -134,41 +135,79 @@ public class App {
             in.close();
         } catch (IOException ex) {
             System.out.println("Erro: " + ex.getMessage());
-            cadastroPet();
+            cadastroPetMenu();
         } catch (InputException ex) {
             System.out.println("Erro: " + ex.getMessage());
-            cadastroPet();
+            cadastroPetMenu();
         } catch (InputMismatchException ex) {
             System.out.println("Erro: " + ex.getMessage());
-            cadastroPet();
+            cadastroPetMenu();
         }
 
     }
 
-    public static void menuBuscarDados(){
+    public static void menuBuscarDados() {
+        Scanner sc = new Scanner(System.in);
+        File pasta = new File("C:\\Studies\\java-playground\\pets-dsf\\src\\pets");
 
-        // File path = new File("C:\\Studies\\java-playground\\pets-dsf\\src\\pets");
+        System.out.println("\nEscolha um ou dois critérios de busca:");
+        System.out.println("1 - Nome ou sobrenome");
+        System.out.println("2 - Sexo");
+        System.out.println("3 - Idade");
+        System.out.println("4 - Peso");
+        System.out.println("5 - Raça");
+        System.out.println("6 - Endereço");
 
-        // Scanner sc = new Scanner(System.in);
-        // System.out.println("Selecione o critério para realizar sua busca: ");
-        // System.out.println("1 - Nome");
-        // System.out.println("2 - Sexo");
-        // System.out.println("3 - Idade");
-        // System.out.println("4 - Peso");
-        // System.out.println("5 - Raça");
-        // System.out.println("6 - Endereço");
-        // String input = sc.nextLine();
+        System.out.print("\nInforme o primeiro critério (1-6): ");
+        int criterio1 = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Insira a informação: ");
+        String valor1 = sc.nextLine().toLowerCase();
 
+        System.out.print("Deseja adicionar um segundo critério? (s/n): ");
+        String opcao = sc.nextLine().toLowerCase();
+        int criterio2 = -1;
+        String valor2 = "";
 
-        // List<File> petsRelatorio = Pet.buscarPet(path, input);
-        // System.out.println(petsRelatorio.toString());
+        if (opcao.equals("s")) {
+            System.out.print("Informe o segundo critério (1-6): ");
+            criterio2 = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Insira a informação: ");
+            valor2 = sc.nextLine().replace("\n", ",");
+        }
 
-        
+        System.out.println("\nResultados encontrados:");
 
-        // sc.close();
-        PetSearcher.menu();
+        File[] arquivos = pasta.listFiles();
+        if (arquivos != null) {
+            for (File arq : arquivos) {
+                try (BufferedReader br = new BufferedReader(new FileReader(arq))) {
+                    StringBuilder conteudo = new StringBuilder();
+                    String linha;
+                    while ((linha = br.readLine()) != null) {
+                        conteudo.append(linha.toLowerCase()).append(", ");
+                    }
 
+                    boolean match1 = conteudo.toString().contains(valor1);
+                    boolean match2 = (criterio2 != -1) ? conteudo.toString().contains(valor2) : true;
+
+                    if (match1 && match2) {
+                        System.out.println(conteudo);
+                    }
+
+                    if (conteudo.toString().isEmpty()) {
+                        System.out.println("Não há nenhum registro com essas informações.");
+                    }
+
+                } catch (IOException e) {
+                    System.out.println("Erro ao ler arquivo: " + arq.getName());
+                }
+            }
+        } else {
+            System.out.println("Nenhum arquivo encontrado.");
+        }
+
+        sc.close();
     }
 }
-
-    
