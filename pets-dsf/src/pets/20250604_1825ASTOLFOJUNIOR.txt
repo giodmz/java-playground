@@ -1,7 +1,0 @@
-1 - Astolfo Junior
-2 - CACHORRO
-3 - MACHO
-4 - rua a, 12, bh
-5 - 9
-6 - 12.0
-7 - Pastor

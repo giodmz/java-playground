@@ -1,7 +1,0 @@
-1 - A B
-2 - Gato
-3 - Femea
-4 - K, 1, A
-5 - 12
-6 - 20.0
-7 - Siames
