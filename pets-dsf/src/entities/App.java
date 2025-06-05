@@ -1,8 +1,10 @@
 package entities;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -27,7 +29,7 @@ public class App {
             System.out.println("2 - Alterar dados do pet cadastrado");
             System.out.println("3 - Deletar um pet cadastrado");
             System.out.println("4 - Listar todos os pets cadastrados");
-            System.out.println("5 - Listar pets");
+            System.out.println("5 - Listar pets por algum critério");
             System.out.println("6 - Sair");
             Integer input = sc.nextInt();
 
@@ -35,6 +37,8 @@ public class App {
                 case 1:
                     cadastroPet();
                     break;
+                case 5:
+                    menuBuscarDados();
 
                 default:
                     break;
@@ -138,6 +142,31 @@ public class App {
             System.out.println("Erro: " + ex.getMessage());
             cadastroPet();
         }
+
+    }
+
+    public static void menuBuscarDados(){
+
+        // File path = new File("C:\\Studies\\java-playground\\pets-dsf\\src\\pets");
+
+        // Scanner sc = new Scanner(System.in);
+        // System.out.println("Selecione o critério para realizar sua busca: ");
+        // System.out.println("1 - Nome");
+        // System.out.println("2 - Sexo");
+        // System.out.println("3 - Idade");
+        // System.out.println("4 - Peso");
+        // System.out.println("5 - Raça");
+        // System.out.println("6 - Endereço");
+        // String input = sc.nextLine();
+
+
+        // List<File> petsRelatorio = Pet.buscarPet(path, input);
+        // System.out.println(petsRelatorio.toString());
+
+        
+
+        // sc.close();
+        PetSearcher.menu();
 
     }
 }
