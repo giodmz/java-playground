@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -146,11 +145,39 @@ public class App {
 
     }
 
-    public static void menuBuscarDados() {
-        Scanner sc = new Scanner(System.in);
-        File pasta = new File("C:\\Studies\\java-playground\\pets-dsf\\src\\pets");
 
-        System.out.println("\nEscolha um ou dois critérios de busca:");
+    // buscar as informações baseadas nos números utilizados no .txt, atribuindo o texto a classe pet
+    public static void menuBuscarDados() {
+
+    Scanner sc = new Scanner(System.in);
+    File pasta = new File("C:\\Studies\\java-playground\\pets-dsf\\src\\pets");
+
+    System.out.println("Seu pet é um gato ou um cachorro?");
+    System.out.println("1 - Cachorro");
+    System.out.println("2 - Gato");
+    System.out.print("Opção: ");
+    int tipoOpcao = sc.nextInt();
+    sc.nextLine(); // limpar buffer
+
+    String tipoAnimal = "";
+    if (tipoOpcao == 1) {
+        tipoAnimal = "cachorro";
+    } else if (tipoOpcao == 2) {
+        tipoAnimal = "gato";
+    } else {
+        System.out.println("Opção inválida.");
+        sc.close();
+        return;
+    }
+
+    System.out.print("Deseja adicionar um segundo critério? (s/n): ");
+    String opcao = sc.nextLine().toLowerCase();
+
+    int criterio2 = -1;
+    String valor2 = "";
+
+    if (opcao.equals("s")) {
+        System.out.println("\nEscolha um critério de busca:");
         System.out.println("1 - Nome ou sobrenome");
         System.out.println("2 - Sexo");
         System.out.println("3 - Idade");
@@ -158,60 +185,68 @@ public class App {
         System.out.println("5 - Raça");
         System.out.println("6 - Endereço");
 
-        // recebendo os critérios
-        System.out.print("\nInforme o primeiro critério (1-6): ");
-        int criterio1 = sc.nextInt();
+        System.out.print("Informe o segundo critério (1-6): ");
+        criterio2 = sc.nextInt();
         sc.nextLine();
         System.out.print("Insira a informação: ");
-        String valor1 = sc.nextLine().toLowerCase();
-
-        System.out.print("Deseja adicionar um segundo critério? (s/n): ");
-        String opcao = sc.nextLine().toLowerCase();
-        int criterio2 = -1;
-        String valor2 = "";
-
-        if (opcao.equals("s")) {
-            System.out.print("Informe o segundo critério (1-6): ");
-            criterio2 = sc.nextInt();
-            sc.nextLine();
-            System.out.print("Insira a informação: ");
-            valor2 = sc.nextLine().replace("\n", ",");
-        }
-
-        System.out.println("\nResultados encontrados:");
-
-
-        // passar pelos arquivos .txt da pasta pets (referenciada pelo pasta)
-        File[] arquivos = pasta.listFiles();
-        if (arquivos != null) {
-
-            // ler todos os arquivos
-            for (File arq : arquivos) {
-                try (BufferedReader br = new BufferedReader(new FileReader(arq))) {
-                    StringBuilder conteudo = new StringBuilder();
-                    String linha;
-                    while ((linha = br.readLine()) != null) {
-                        conteudo.append(linha.toLowerCase()).append(", ");
-                    }
-
-                    // verificar se o conteudo passado tem valores válidos
-                    boolean match1 = conteudo.toString().contains(valor1);
-                    boolean match2 = (criterio2 != -1) ? conteudo.toString().contains(valor2) : true;
-
-                    if (match1 && match2) {
-                        System.out.println(conteudo);
-                    }
-
-
-                } catch (IOException e) {
-                    System.out.println("Erro ao ler arquivo: " + arq.getName());
-                }
- 
-            }
-        } else {
-            System.out.println("Nenhum arquivo encontrado.");
-        }
-
-        sc.close();
+        valor2 = sc.nextLine().toLowerCase();
     }
+
+
+    File[] arquivos = pasta.listFiles();
+    if (arquivos != null) {
+        for (File arq : arquivos) {
+            try (BufferedReader br = new BufferedReader(new FileReader(arq))) {
+
+                String nome = "", tipo = "", sexo = "", endereco = "", idade = "", peso = "", raca = "";
+                String linha;
+                while ((linha = br.readLine()) != null) {
+                    linha = linha.toLowerCase();
+                    if (linha.startsWith("1 - ")) nome = linha.substring(4).trim();
+                    if (linha.startsWith("2 - ")) tipo = linha.substring(4).trim();
+                    if (linha.startsWith("3 - ")) sexo = linha.substring(4).trim();
+                    if (linha.startsWith("4 - ")) endereco = linha.substring(4).trim();
+                    if (linha.startsWith("5 - ")) idade = linha.substring(4).trim();
+                    if (linha.startsWith("6 - ")) peso = linha.substring(4).trim();
+                    if (linha.startsWith("7 - ")) raca = linha.substring(4).trim();
+                }
+
+                boolean matchTipo = tipo.equals(tipoAnimal);
+                boolean matchCriterio2 = true;
+
+                if (criterio2 != -1) {
+                    switch (criterio2) {
+                        case 1 -> matchCriterio2 = nome.contains(valor2);
+                        case 2 -> matchCriterio2 = sexo.contains(valor2);
+                        case 3 -> matchCriterio2 = idade.equals(valor2);
+                        case 4 -> matchCriterio2 = peso.equals(valor2);
+                        case 5 -> matchCriterio2 = raca.contains(valor2);
+                        case 6 -> matchCriterio2 = endereco.contains(valor2);
+                        default -> matchCriterio2 = true;
+                    }
+                }
+
+                if (matchTipo && matchCriterio2) {
+                    System.out.print("\nNome: " + nome);
+                    System.out.print(", Tipo: " + tipo);
+                    System.out.print(", Sexo: " + sexo);
+                    System.out.print(", Idade: " + idade);
+                    System.out.print(", Peso: " + peso);
+                    System.out.print(", Raça: " + raca);
+                    System.out.print(", Endereço: " + endereco);
+                }
+
+                
+
+                
+
+            } catch (IOException e) {
+                System.out.println("Erro ao ler arquivo: " + arq.getName());
+            }
+        } 
+    }
+
+    sc.close();
+}
+
 }

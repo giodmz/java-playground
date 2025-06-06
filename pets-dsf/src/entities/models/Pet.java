@@ -186,9 +186,4 @@ public class Pet {
         }
     }
 
-    public void buscarPet() {
-        
-
-    }
-
 }
