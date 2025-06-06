@@ -158,6 +158,7 @@ public class App {
         System.out.println("5 - Raça");
         System.out.println("6 - Endereço");
 
+        // recebendo os critérios
         System.out.print("\nInforme o primeiro critério (1-6): ");
         int criterio1 = sc.nextInt();
         sc.nextLine();
@@ -179,8 +180,12 @@ public class App {
 
         System.out.println("\nResultados encontrados:");
 
+
+        // passar pelos arquivos .txt da pasta pets (referenciada pelo pasta)
         File[] arquivos = pasta.listFiles();
         if (arquivos != null) {
+
+            // ler todos os arquivos
             for (File arq : arquivos) {
                 try (BufferedReader br = new BufferedReader(new FileReader(arq))) {
                     StringBuilder conteudo = new StringBuilder();
@@ -189,6 +194,7 @@ public class App {
                         conteudo.append(linha.toLowerCase()).append(", ");
                     }
 
+                    // verificar se o conteudo passado tem valores válidos
                     boolean match1 = conteudo.toString().contains(valor1);
                     boolean match2 = (criterio2 != -1) ? conteudo.toString().contains(valor2) : true;
 
@@ -196,13 +202,11 @@ public class App {
                         System.out.println(conteudo);
                     }
 
-                    if (conteudo.toString().isEmpty()) {
-                        System.out.println("Não há nenhum registro com essas informações.");
-                    }
 
                 } catch (IOException e) {
                     System.out.println("Erro ao ler arquivo: " + arq.getName());
                 }
+ 
             }
         } else {
             System.out.println("Nenhum arquivo encontrado.");
