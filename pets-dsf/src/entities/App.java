@@ -194,14 +194,24 @@ public class App {
 
 
     File[] arquivos = pasta.listFiles();
+    boolean found = false; // verificar se algo foi achado nos arquivos
+
     if (arquivos != null) {
         for (File arq : arquivos) {
-            try (BufferedReader br = new BufferedReader(new FileReader(arq))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arq))) {
 
                 String nome = "", tipo = "", sexo = "", endereco = "", idade = "", peso = "", raca = "";
                 String linha;
+
+                // passa pelas linhas usando como referência os numeros para pegar as informacoes
                 while ((linha = br.readLine()) != null) {
                     linha = linha.toLowerCase();
+
+                    /* notes:
+                    substring() serve para recortar uma parte da String, começando a partir de um índice específico. 
+                    trim() serve para remover espaços em branco no início e no fim de uma string.
+                    */
+
                     if (linha.startsWith("1 - ")) nome = linha.substring(4).trim();
                     if (linha.startsWith("2 - ")) tipo = linha.substring(4).trim();
                     if (linha.startsWith("3 - ")) sexo = linha.substring(4).trim();
@@ -214,6 +224,7 @@ public class App {
                 boolean matchTipo = tipo.equals(tipoAnimal);
                 boolean matchCriterio2 = true;
 
+                // se houver um segundo critério, verifica se o conteúdo corresponde
                 if (criterio2 != -1) {
                     switch (criterio2) {
                         case 1 -> matchCriterio2 = nome.contains(valor2);
@@ -233,17 +244,22 @@ public class App {
                     System.out.print(", Idade: " + idade);
                     System.out.print(", Peso: " + peso);
                     System.out.print(", Raça: " + raca);
-                    System.out.print(", Endereço: " + endereco);
-                }
-
+                    System.out.print(", Endereço: " + endereco + "\n");
+                    found = true;
+                } 
                 
-
                 
 
             } catch (IOException e) {
                 System.out.println("Erro ao ler arquivo: " + arq.getName());
-            }
-        } 
+            } 
+
+            
+        }
+
+        if (!found) {
+            System.out.println("Nenhum pet encontrado com essas informações.");
+        }
     }
 
     sc.close();
