@@ -1,10 +1,17 @@
 package entities.models;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import entities.enums.Genero;
 import entities.enums.Tipo;
 
@@ -94,10 +101,6 @@ public class Pet {
                 + ", peso=" + peso + ", raca=" + raca + "]";
     }
 
-
-    
-
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -186,4 +189,6 @@ public class Pet {
         }
     }
 
+    
+        
 }

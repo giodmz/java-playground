@@ -4,4 +4,4 @@
 4 - Rua B, 1, Cidade B
 5 - 4
 6 - 12.0
-7 - Balduriano
+7 - Astariano
