@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Locale;
-import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
 
 import entities.enums.*;
@@ -43,11 +42,16 @@ public class App {
                     break;
                 case 2:
                     alterarDadosPetMenu();
+                    break;
                 case 3:
                     removerPetMenu();
                     break;
+                case 4:
+                    menuListarPets();
+                    break;
                 case 5:
                     menuBuscarDados();
+                    break;
 
                 default:
                     break;
@@ -286,6 +290,54 @@ public class App {
 
     }
 
+    public static void menuListarPets() {
+        File pasta = new File("C:\\Studies\\java-playground\\pets-dsf\\src\\pets");
+        File[] arquivos = pasta.listFiles();
+        int contador = 1;
+
+        System.out.println("Pets encontrados:");
+
+        for (File arq : arquivos) {
+            try (BufferedReader br = new BufferedReader(new FileReader(arq))) {
+                String nome = "", tipo = "", sexo = "", endereco = "", idade = "", peso = "", raca = "";
+                String linha;
+                while ((linha = br.readLine()) != null) {
+                    linha = linha.toLowerCase();
+
+                    if (linha.startsWith("1 - "))
+                        nome = linha.substring(4).trim();
+                    if (linha.startsWith("2 - "))
+                        tipo = linha.substring(4).trim();
+                    if (linha.startsWith("3 - "))
+                        sexo = linha.substring(4).trim();
+                    if (linha.startsWith("4 - "))
+                        endereco = linha.substring(4).trim();
+                    if (linha.startsWith("5 - "))
+                        idade = linha.substring(4).trim();
+                    if (linha.startsWith("6 - "))
+                        peso = linha.substring(4).trim();
+                    if (linha.startsWith("7 - "))
+                        raca = linha.substring(4).trim();
+                }
+
+                System.out.print(contador + " - ");
+                System.out.print("Nome: " + nome);
+                System.out.print(", Tipo: " + tipo);
+                System.out.print(", Sexo: " + sexo);
+                System.out.print(", Idade: " + idade);
+                System.out.print(", Peso: " + peso);
+                System.out.print(", Raça: " + raca);
+                System.out.print(", Endereço: " + endereco + "\n");
+                
+                contador++;
+
+            } catch (IOException e) {
+                System.out.println("Erro ao ler arquivo: " + arq.getName());
+            }
+        }
+
+    }
+
     public static void menuBuscarDados() {
         List<File> arquivosEncontrados = new ArrayList<>();
         arquivosEncontrados = buscarDados(arquivosEncontrados);
@@ -390,7 +442,8 @@ public class App {
             return;
         }
 
-        System.out.println("Tem certeza que deseja apagar os dados do pet? " + "(" + arquivoSelecionado.getName() + ")");
+        System.out
+                .println("Tem certeza que deseja apagar os dados do pet? " + "(" + arquivoSelecionado.getName() + ")");
         System.out.println("Digite SIM para confirmar.");
         String confirmacao = sc.nextLine();
 
