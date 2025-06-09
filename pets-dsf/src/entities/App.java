@@ -52,7 +52,9 @@ public class App {
                 case 5:
                     menuBuscarDados();
                     break;
-
+                case 6:
+                    System.out.println("\nAté logo...");
+                    System.exit(0);
                 default:
                     break;
             }
@@ -155,6 +157,8 @@ public class App {
             System.out.println("Erro: " + ex.getMessage());
             cadastroPetMenu();
         }
+
+        menuInicial();
 
     }
 
@@ -336,11 +340,14 @@ public class App {
             }
         }
 
+        menuInicial();
+
     }
 
     public static void menuBuscarDados() {
         List<File> arquivosEncontrados = new ArrayList<>();
         arquivosEncontrados = buscarDados(arquivosEncontrados);
+        menuInicial();
     }
 
     public static void alterarDadosPetMenu() {
@@ -412,6 +419,8 @@ public class App {
         }
 
         sc.close();
+
+        menuInicial();
     }
 
     public static void removerPetMenu() {
@@ -454,6 +463,8 @@ public class App {
             System.out.println("\nPor favor digite a confirmação corretamente. ");
             removerPetMenu();
         }
+
+        menuInicial();
 
     }
 }
