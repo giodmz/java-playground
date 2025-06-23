@@ -35,3 +35,20 @@ altera o lado, ou seja, caso pegue o exemplo citado acima
 ele usaria como base a TabelaB, o conceito não muda,
 apenas troca o lado.
 */
+
+/*
+Exemplo:
+Preciso descobrir quais pessoas tem um cartão de 
+credito registrado
+*/
+SELECT *
+FROM Person.Person pp
+LEFT JOIN Sales.PersonCreditCard pc
+ON pp.BusinessEntityID = pc.BusinessEntityID
+WHERE pc.BusinessEntityID IS NULL;
+/*
+Esse comando vai pegar as tabela, fazer a junção e
+retornar quantas pessoas não tem o cartão de crédito
+registrado, já que o LEFT JOIN pega as informações
+e as coloca como null caso não tenha nada na tabela.
+*/
