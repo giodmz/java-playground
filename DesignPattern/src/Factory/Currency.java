@@ -5,7 +5,8 @@ package Factory;
 * para criar objetos em uma superclasse, mas permite que as subclasses
 * alterem o tipo de objetos que serão criados.
 * É utilizado para desacoplar a lógica de criação da classe do resto do código
-* para facilitar a manutenção */
+* para facilitar a manutenção
+*/
 
 public interface Currency {
     String getSymbol();

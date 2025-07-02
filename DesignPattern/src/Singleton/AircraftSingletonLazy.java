@@ -1,17 +1,22 @@
 package Singleton;
 
+import test.AircraftTestLazy;
+
 import java.util.HashSet;
 import java.util.Set;
+/*
+ * O problema é que threads trabalhando juntas, provavelmente 2
+ * pessoas diferentes irão conseguir pegar o mesmo assento.
+ */
+public class AircraftSingletonLazy {
 
-public class AircraftSingletonEager {
+    //Lazy initialization
 
-    //Eager initilization
-
-    private  static  final AircraftSingletonEager INSTANCE = new AircraftSingletonEager("787-900");
+    private  static AircraftSingletonLazy INSTANCE;
     private final Set<String> availableSeats = new HashSet<>();
     private final String name;
 
-    private AircraftSingletonEager(String name) {
+    private AircraftSingletonLazy(String name) {
         this.name = name;
     }
 
@@ -24,7 +29,18 @@ public class AircraftSingletonEager {
         return  availableSeats.remove(seat);
     }
 
-    public static AircraftSingletonEager getInstance() {
+    // poderia usar o synchronized diretamente no métdo,
+    // porém isso afeta a performance, já que pega o méthod inteiro
+
+    // public synchronized static AircraftSingletonLazy getInstance() {...}
+    public static AircraftSingletonLazy getInstance() {
+        if (INSTANCE == null) {
+            synchronized (AircraftTestLazy.class){
+                if (INSTANCE == null) {
+                INSTANCE  = new AircraftSingletonLazy("787-900");
+                }
+            }
+        }
         return INSTANCE;
     }
 
