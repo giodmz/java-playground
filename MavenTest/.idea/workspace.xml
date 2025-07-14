@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="98523a3e-14d4-4bdf-9853-a0258f63ebc9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dominio/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dominio/Producer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/ProducerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/ProducerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ConnectionFactoryTest01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ConnectionFactoryTest01.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +43,10 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Studies/java-playground/MavenTest",
-    "onboarding.tips.debug.path": "C:/Studies/java-playground/MavenTest/src/main/java/org/example/Main.java"
+    "last_opened_file_path": "C:/Studies/java-playground/MavenTest/pom.xml",
+    "onboarding.tips.debug.path": "C:/Studies/java-playground/MavenTest/src/main/java/org/example/Main.java",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -54,7 +60,7 @@
       <recent name="dominio" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ConnectionFactoryTest01">
     <configuration name="ConnectionFactoryTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ConnectionFactoryTest" />
       <module name="MavenTest" />
@@ -62,8 +68,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ConnectionFactoryTest01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ConnectionFactoryTest01" />
+      <module name="MavenTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ConnectionFactoryTest01" />
         <item itemvalue="Application.ConnectionFactoryTest" />
       </list>
     </recent_temporary>
