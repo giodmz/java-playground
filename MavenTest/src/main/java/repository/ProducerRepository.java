@@ -20,7 +20,21 @@ public class ProducerRepository {
             log.info("Inserted producer in the database, rows affected by this change: '{}'", rowsAffected);
             stm.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.error("Error while trying to insert producer '{}'", producer.getName(), ex);
+        }
+    }
+
+    public static void delete (int id){
+        String sql = "DELETE FROM anime_store.Producer WHERE (Id = '%d') "
+                .formatted(id);
+        try(Connection conn = ConnectionFactory.getConnection();
+            Statement stm = conn.createStatement()) {
+            int rowsAffected = stm.executeUpdate(sql);
+            // utiliza da dependencia log4j
+            log.info("Deleted producer '{}' in the database, rows affected by this change: '{}'", id, rowsAffected);
+            stm.close();
+        } catch (SQLException ex) {
+            log.error("Error while trying to insert producer '{}'", id, ex);
         }
     }
 }
