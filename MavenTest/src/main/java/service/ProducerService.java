@@ -9,11 +9,20 @@ public class ProducerService {
         ProducerRepository.save(producer);
     }
 
-    public  static  void delete(int id) {
-        if (id <= 0 ){
+    public  static  void delete(Integer id) {
+        requiredValidId(id);
+        ProducerRepository.delete(id);
+    }
+
+    public static  void update(Producer producer) {
+        requiredValidId(producer.getId());
+        ProducerRepository.update(producer);
+    }
+
+    private static void requiredValidId(Integer id){
+        if (id <= 0){
             throw new IllegalArgumentException("Invalid id");
         }
-        ProducerRepository.delete(id);
     }
 
 }

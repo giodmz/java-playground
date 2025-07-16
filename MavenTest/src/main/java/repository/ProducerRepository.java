@@ -37,4 +37,18 @@ public class ProducerRepository {
             log.error("Error while trying to insert producer '{}'", id, ex);
         }
     }
+
+    public static void update (Producer producer){
+        String sql = "UPDATE anime_store.Producer SET Name = '%s' WHERE Id = %d"
+                .formatted(producer.getName(), producer.getId());
+        try(Connection conn = ConnectionFactory.getConnection();
+            Statement stm = conn.createStatement()) {
+            int rowsAffected = stm.executeUpdate(sql);
+            // utiliza da dependencia log4j
+            log.info("Deleted producer '{}' in the database, rows affected by this change: '{}'", producer.getId(), rowsAffected);
+            stm.close();
+        } catch (SQLException ex) {
+            log.error("Error while trying to insert producer '{}'", producer.getId(), ex);
+        }
+    }
 }
