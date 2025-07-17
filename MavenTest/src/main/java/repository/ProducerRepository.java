@@ -4,13 +4,11 @@ import conn.ConnectionFactory;
 import dominio.Producer;
 import lombok.extern.log4j.Log4j2;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+* resultSet é utilizado para recuperar qualquer tipo de dado da db*/
 @Log4j2
 public class ProducerRepository {
     public static void save(Producer producer) {
@@ -73,8 +71,7 @@ public class ProducerRepository {
 //        return producers;
     }
 
-    public static List<Producer> findByName(String name){
-        log.info("Finding producers by name: ");
+    public static List<Producer> findByName(String name) {
         String sql = "SELECT * FROM anime_store.Producer WHERE Name LIKE '%%%s%%';"
                 .formatted(name);
         List<Producer> producers = new ArrayList<>();
@@ -94,6 +91,26 @@ public class ProducerRepository {
             log.error("Error while trying find all producers", ex);
         }
         return producers;
+    }
+
+    public static void showProducerMetadata(){
+        log.info("Showing producer Metadata: ");
+        String sql = "SELECT * FROM anime_store.Producer;";
+        try (Connection conn = ConnectionFactory.getConnection();
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery(sql)) {
+            ResultSetMetaData metaData = rs.getMetaData();
+            rs.next();
+            int columnCount = metaData.getColumnCount();
+            for (int i = 1; i <= columnCount; i++) {
+                log.info("Table name: '{}'", metaData.getTableName(i));
+                log.info("Column name: '{}'", metaData.getColumnName(i));
+                log.info("Column size: '{}'", metaData.getColumnDisplaySize(i));
+                log.info("Column type: '{}'", metaData.getColumnTypeName(i));
+            }
+        } catch (SQLException ex) {
+            log.error("Error while trying find all producers", ex);
+        }
     }
 
 

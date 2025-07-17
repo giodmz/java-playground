@@ -14,11 +14,12 @@ import java.util.List;
 public class ConnectionFactoryTest01 {
     public static void main(String[] args) throws SQLException {
 
-        // TESTE
-        List<Producer> producers = ProducerService.findAll();
+//        // TESTE
+            ProducerService.showProducerMetadata();
+//        List<Producer> producers = ProducerService.findAll();
 //        List<Producer> producers = ProducerService.findByName("Mad");
-        log.info("Complete log: {}", producers);
-        System.out.println("Total: " + producers.size());
+//        log.info("Complete log: {}", producers);
+//        System.out.println("Total: " + producers.size());
 //        Producer producerToUpdate = Producer.builder().id(15).name("Madhouse").build();
 //        ProducerService.update(producerToUpdate);
 
