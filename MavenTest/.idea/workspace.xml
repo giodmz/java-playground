@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="98523a3e-14d4-4bdf-9853-a0258f63ebc9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dominio/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dominio/Producer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repository/ProducerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/ProducerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/ProducerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ProducerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ConnectionFactoryTest01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ConnectionFactoryTest01.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,21 +38,21 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ConnectionFactoryTest.executor": "Run",
-    "Application.ConnectionFactoryTest01.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Studies/java-playground/MavenTest/pom.xml",
-    "onboarding.tips.debug.path": "C:/Studies/java-playground/MavenTest/src/main/java/org/example/Main.java",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ConnectionFactoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ConnectionFactoryTest01.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Studies/java-playground/MavenTest/pom.xml&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Studies/java-playground/MavenTest/src/main/java/org/example/Main.java&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Studies\java-playground\MavenTest" />

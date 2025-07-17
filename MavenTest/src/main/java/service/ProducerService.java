@@ -31,4 +31,8 @@ public class ProducerService {
         }
     }
 
+    public static List<Producer> findByName(String name) {
+        return ProducerRepository.findByName(name);
+    }
+
 }
