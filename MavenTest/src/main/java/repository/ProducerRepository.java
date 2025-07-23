@@ -100,7 +100,6 @@ public class ProducerRepository {
              Statement stm = conn.createStatement();
              ResultSet rs = stm.executeQuery(sql)) {
             ResultSetMetaData metaData = rs.getMetaData();
-            rs.next();
             int columnCount = metaData.getColumnCount();
             for (int i = 1; i <= columnCount; i++) {
                 log.info("Table name: '{}'", metaData.getTableName(i));
@@ -112,6 +111,34 @@ public class ProducerRepository {
             log.error("Error while trying find all producers", ex);
         }
     }
+
+    public static void showDriverMetadata(){
+        log.info("Showing driver Metadata: ");
+        String sql = "SELECT * FROM anime_store.Producer;";
+        try (Connection conn = ConnectionFactory.getConnection()) {
+          DatabaseMetaData dbMetadata = conn.getMetaData();
+          if(dbMetadata.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY)) {
+              log.info("Supports type forward only");
+              if (dbMetadata.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)){
+                  log.info("and supports concur updatable");
+              }
+          }
+            if(dbMetadata.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE)) {
+                log.info("Supports type scroll insensitive");
+                if (dbMetadata.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)){
+                    log.info("and supports concur updatable");
+                }
+            }
+            if(dbMetadata.supportsResultSetType(ResultSet.TYPE_SCROLL_SENSITIVE)) {
+                log.info("Supports type scroll sensitive");
+                if (dbMetadata.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE)){
+                    log.info("and supports concur updatable");
+                }
+            }
+        } catch (SQLException ex) {
+        log.error("Error while trying find all producers", ex);
+    }
+}
 
 
 }

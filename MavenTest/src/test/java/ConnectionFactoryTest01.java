@@ -15,7 +15,8 @@ public class ConnectionFactoryTest01 {
     public static void main(String[] args) throws SQLException {
 
 //        // TESTE
-            ProducerService.showProducerMetadata();
+//            ProducerService.showProducerMetadata();
+            ProducerService.showDriverMetadata();
 //        List<Producer> producers = ProducerService.findAll();
 //        List<Producer> producers = ProducerService.findByName("Mad");
 //        log.info("Complete log: {}", producers);
