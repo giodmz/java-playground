@@ -15,11 +15,18 @@ public class ConnectionFactoryTest01 {
     public static void main(String[] args) throws SQLException {
 
 //        // TESTE
-//            ProducerService.showProducerMetadata();
-            ProducerService.showDriverMetadata();
+//            ProducerService.showProducerMetadata()//            ProducerService.showDriverMetadata();
+            ProducerService.showTypeScrollWorking();
 //        List<Producer> producers = ProducerService.findAll();
 //        List<Producer> producers = ProducerService.findByName("Mad");
 //        log.info("Complete log: {}", producers);
+//        System.out.println("Total: " + producers.size());
+//        System.out.println("Total: " + producers.size());
+//        System.out.println("Total: " + producers.size());
+//        System.out.println("Total: " + producers.size());
+//        System.out.println("Total: " + producers.size());
+//        System.out.println("Total: " + producers.size());
+//        System.out.println("Total: " + producers.size());
 //        System.out.println("Total: " + producers.size());
 //        Producer producerToUpdate = Producer.builder().id(15).name("Madhouse").build();
 //        ProducerService.update(producerToUpdate);

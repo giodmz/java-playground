@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 /*
-* resultSet é utilizado para recuperar qualquer tipo de dado da db*/
+ * resultSet é utilizado para recuperar qualquer tipo de dado da db*/
 @Log4j2
 public class ProducerRepository {
     public static void save(Producer producer) {
@@ -116,13 +116,13 @@ public class ProducerRepository {
         log.info("Showing driver Metadata: ");
         String sql = "SELECT * FROM anime_store.Producer;";
         try (Connection conn = ConnectionFactory.getConnection()) {
-          DatabaseMetaData dbMetadata = conn.getMetaData();
-          if(dbMetadata.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY)) {
-              log.info("Supports type forward only");
-              if (dbMetadata.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)){
-                  log.info("and supports concur updatable");
-              }
-          }
+            DatabaseMetaData dbMetadata = conn.getMetaData();
+            if(dbMetadata.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY)) {
+                log.info("Supports type forward only");
+                if (dbMetadata.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)){
+                    log.info("and supports concur updatable");
+                }
+            }
             if(dbMetadata.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE)) {
                 log.info("Supports type scroll insensitive");
                 if (dbMetadata.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)){
@@ -136,9 +136,74 @@ public class ProducerRepository {
                 }
             }
         } catch (SQLException ex) {
-        log.error("Error while trying find all producers", ex);
+            log.error("Error while trying find all producers", ex);
+        }
     }
-}
+
+    // um cursor que se move pelas linhas utilizando comandos do resultSet
+    public static void showTypeScrollWorking() {
+        String sql = "SELECT * FROM anime_store.Producer;";
+        try (Connection conn = ConnectionFactory.getConnection();
+             Statement stm = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+             ResultSet rs = stm.executeQuery(sql)) {
+
+            // se move para a última linha
+            log.info("Last row: '{}'", rs.last());
+            log.info("Row number: '{}'", rs.getRow());
+            log.info(Producer.builder()
+                    .id(rs.getInt("ID"))
+                    .name(rs.getString("Name"))
+                    .build());
+
+            // primeira linha
+            log.info("First row: '{}'", rs.first());
+            log.info("Row number: '{}'", rs.getRow());
+            log.info(Producer.builder()
+                    .id(rs.getInt("ID"))
+                    .name(rs.getString("Name"))
+                    .build());
+
+            // linha absoluta que foi passada (2)
+            log.info("Row absolute: '{}'", rs.absolute(2));
+            log.info("Row number: '{}'", rs.getRow());
+            log.info(Producer.builder()
+                    .id(rs.getInt("ID"))
+                    .name(rs.getString("Name"))
+                    .build());
+
+            // se move de forma relativa baseada na última linha que estava
+            log.info("Row relative: '{}'", rs.relative(-1));
+            log.info("Row number: '{}'", rs.getRow());
+            log.info(Producer.builder()
+                    .id(rs.getInt("ID"))
+                    .name(rs.getString("Name"))
+                    .build());
+
+            // verifica se é a última e não move o cursor
+            log.info("Is last? '{}'", rs.isLast());
+            log.info("Row number: '{}'", rs.getRow());
+
+            // msm esquema do isLast
+            log.info("Is first? '{}'", rs.isFirst());
+            log.info("Row number: '{}'", rs.getRow());
+
+            log.info("***************************************");
+            log.info("Last row '{}'", rs.last());
+            rs.next();
+            log.info("Is after last row? '{}'", rs.isAfterLast());
+
+            // previous vai pra trás
+            while(rs.previous()) {
+                log.info(Producer.builder()
+                        .id(rs.getInt("ID"))
+                        .name(rs.getString("Name"))
+                        .build());
+            }
+
+        } catch (SQLException ex) {
+            log.error("Error while trying find all producers", ex);
+        }
+    }
 
 
 }
