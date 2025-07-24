@@ -47,4 +47,8 @@ public class ProducerService {
         return ProducerRepository.findByName(name);
     }
 
+    public static List<Producer> findByNameAndTurnInToUpperCase(String name) {
+        return ProducerRepository.findByNameAndTurnInToUpperCase(name);
+    }
+
 }

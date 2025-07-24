@@ -16,7 +16,10 @@ public class ConnectionFactoryTest01 {
 
 //        // TESTE
 //            ProducerService.showProducerMetadata()//            ProducerService.showDriverMetadata();
-            ProducerService.showTypeScrollWorking();
+//            ProducerService.showTypeScrollWorking();
+
+            List<Producer> producers = ProducerService.findByNameAndTurnInToUpperCase("Toei");
+            log.info("Producers found '{}'", producers);
 //        List<Producer> producers = ProducerService.findAll();
 //        List<Producer> producers = ProducerService.findByName("Mad");
 //        log.info("Complete log: {}", producers);
