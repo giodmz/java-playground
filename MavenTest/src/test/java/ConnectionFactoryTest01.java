@@ -14,12 +14,15 @@ import java.util.List;
 public class ConnectionFactoryTest01 {
     public static void main(String[] args) throws SQLException {
 
-//        // TESTE
 //            ProducerService.showProducerMetadata()//            ProducerService.showDriverMetadata();
 //            ProducerService.showTypeScrollWorking();
 
-            List<Producer> producers = ProducerService.findByNameAndTurnInToUpperCase("Toei");
-            log.info("Producers found '{}'", producers);
+//            List<Producer> producers = ProducerService.findByNameAndTurnInToUpperCase("Toei");
+
+//            List<Producer> producers = ProducerService.findByNameAndInsertWhenNotFound("A-1 Pictures");
+            ProducerService.findByNameAndDelete("Toei Animation");
+//            log.info("Producers found '{}'", producers);
+
 //        List<Producer> producers = ProducerService.findAll();
 //        List<Producer> producers = ProducerService.findByName("Mad");
 //        log.info("Complete log: {}", producers);
