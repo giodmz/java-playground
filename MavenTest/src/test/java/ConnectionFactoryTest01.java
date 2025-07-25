@@ -20,8 +20,9 @@ public class ConnectionFactoryTest01 {
 //            List<Producer> producers = ProducerService.findByNameAndTurnInToUpperCase("Toei");
 
 //            List<Producer> producers = ProducerService.findByNameAndInsertWhenNotFound("A-1 Pictures");
-            ProducerService.findByNameAndDelete("Toei Animation");
-//            log.info("Producers found '{}'", producers);
+//            ProducerService.findByNameAndDelete("Toei Animation");
+            List<Producer> producers = ProducerService.findByNamePreparedStatement("HNK");
+            log.info("Producers found '{}'", producers);
 
 //        List<Producer> producers = ProducerService.findAll();
 //        List<Producer> producers = ProducerService.findByName("Mad");

@@ -263,6 +263,33 @@ public class ProducerRepository {
         return producers;
     }
 
+    public static List<Producer> findByNamePreparedStatement(String name) {
+        // ? == wildcard
+        String sql = "SELECT * FROM anime_store.Producer WHERE Name LIKE ?;";
+        List<Producer> producers = new ArrayList<>();
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = createdPrepareStatement(conn, sql, name);
+             ResultSet rs = ps.executeQuery(sql)) {
+
+
+            while (rs.next()) {
+                log.info("Deleting '{}'", rs.getString("Name"));
+                rs.deleteRow();
+            }
+
+        } catch (SQLException ex) {
+            log.error("Error while trying find all producers", ex);
+        }
+        return producers;
+    }
+
+    private static PreparedStatement createdPrepareStatement(Connection conn, String sql, String name) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement(sql);
+        // substitui o wildcard
+        ps.setString(1, "%" + name + "%");
+        return  ps;
+    }
+
     private static void insertProducer(String name, ResultSet rs) throws SQLException {
         rs.moveToInsertRow();
         rs.updateString("Name", name);

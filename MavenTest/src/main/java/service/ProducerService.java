@@ -54,8 +54,13 @@ public class ProducerService {
     public static List<Producer> findByNameAndInsertWhenNotFound(String name) {
         return ProducerRepository.findByNameAndInsertWhenNotFound(name);
     }
+
     public static void findByNameAndDelete(String name) {
         ProducerRepository.findByNameAndDelete(name);
+    }
+
+    public static List<Producer> findByNamePreparedStatement(String name) {
+        return ProducerRepository.findByNamePreparedStatement(name);
     }
 
 }
