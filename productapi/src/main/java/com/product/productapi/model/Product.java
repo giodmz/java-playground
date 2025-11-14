@@ -1,11 +1,27 @@
 package com.product.productapi.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 // POJO -> Plain Old Java Object
+
+@Entity
+@Table(name = "product") // tbm não é obrigatório
 public class Product {
 
+    @Id // primary key
+    @Column(name = "id") // tem o mesmo nome da table = não precisa colocar o @column
     private String id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column
     private String info;
+    
+    @Column
     private Double price;
 
     public String getId() {
