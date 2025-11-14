@@ -3,11 +3,9 @@ package com.product.productapi.controller;
 
 import com.product.productapi.model.Product;
 import com.product.productapi.repository.ProductRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -27,6 +25,14 @@ public class ProductController {
         product.setId(id);
         productRepository.save(product);
         return product;
+    }
+
+    @GetMapping("/{id}")
+    public Product getById(@PathVariable("id") String id) { // especificando o parametro (ja que o ID é UUID)
+//        Optional<Product> product = productRepository.findById(id);
+//        .var para criar variavel (optional: vai tentar encontrar o
+//        produto com esse id)
+        return productRepository.findById(id).orElse(null);
     }
 
 }
