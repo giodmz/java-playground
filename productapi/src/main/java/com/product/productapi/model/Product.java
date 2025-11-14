@@ -20,7 +20,7 @@ public class Product {
 
     @Column
     private String info;
-    
+
     @Column
     private Double price;
 
