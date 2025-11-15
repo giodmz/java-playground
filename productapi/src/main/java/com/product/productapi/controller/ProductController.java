@@ -5,6 +5,7 @@ import com.product.productapi.model.Product;
 import com.product.productapi.repository.ProductRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -33,6 +34,23 @@ public class ProductController {
 //        .var para criar variavel (optional: vai tentar encontrar o
 //        produto com esse id)
         return productRepository.findById(id).orElse(null);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") String id) {
+        productRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public void update(@PathVariable("id") String id,
+                       @RequestBody Product product){
+        product.setId(id);
+        productRepository.save(product);
+    }
+
+    @GetMapping
+    public List<Product> search(@RequestParam("name") String name){
+        return productRepository.findByName(name);
     }
 
 }
