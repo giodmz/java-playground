@@ -45,4 +45,12 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
+
+    public CarStatus bootCar(Key key) {
+        if (key.getManufactorer() != this.manufactorer ) {
+            return new CarStatus("invalid key");
+        }
+        return new CarStatus("car running" + engine);
+    }
+
 }

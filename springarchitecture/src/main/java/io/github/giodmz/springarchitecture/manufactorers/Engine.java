@@ -22,7 +22,7 @@ public class Engine {
         return engine;
     }
 
-    public void setEngine(EngineType engine) {
+    public void setEngine(EngineType aspirated) {
         this.engine = engine;
     }
 
@@ -48,5 +48,16 @@ public class Engine {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public String toString() {
+        return "Engine{" +
+                "cylinders=" + cylinders +
+                ", model='" + model + '\'' +
+                ", hp=" + hp +
+                ", engSize=" + engSize +
+                ", engine=" + engine +
+                '}';
     }
 }
