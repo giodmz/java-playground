@@ -4,11 +4,13 @@ import io.github.giodmz.springarchitecture.manufactorers.Engine;
 import io.github.giodmz.springarchitecture.manufactorers.enums.EngineType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class ManufactorerConfiguration {
 
     @Bean(name = "aspiratedEngine") // metodo que retorna um objeto construido
+    @Primary
     public Engine aspiratedEngine(){
         var engine = new Engine();
         engine.setHp(120);

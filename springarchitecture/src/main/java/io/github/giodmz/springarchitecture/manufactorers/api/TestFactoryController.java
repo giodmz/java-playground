@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestFactoryController {
 
     @Autowired // injecao de dependencia -> pegue um objeto do tipo 'engine'
-    @Qualifier("electricEngine")
+    @Electric
     private Engine engine;
 
     @PostMapping
