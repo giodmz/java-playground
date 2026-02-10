@@ -3,10 +3,13 @@ package io.github.giodmz.springarchitecture;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 @SpringBootApplication
+@EnableConfigurationProperties
 public class Application {
 
 	public static void main(String[] args) {
@@ -26,6 +29,12 @@ public class Application {
 		ConfigurableEnvironment environment = appContext.getEnvironment(); // can read any properties
 		String appName = environment.getProperty("spring.application.name");
 		System.out.println("App name: " + appName);
+
+		Value value = appContext.getBean(Value.class);
+		value.printVar();
+
+		AppProperties properties = appContext.getBean(AppProperties.class);
+		System.out.println(properties.getValor1());
 	}
 
 }

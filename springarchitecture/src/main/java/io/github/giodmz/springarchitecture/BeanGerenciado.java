@@ -11,6 +11,9 @@ public class BeanGerenciado {
     @Autowired
     private TodoValidator validator;
 
+    @Autowired
+    private AppProperties properties;
+
     public BeanGerenciado(TodoValidator validator) {
         this.validator = validator;
     }
