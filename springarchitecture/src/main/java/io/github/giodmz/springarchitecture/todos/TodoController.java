@@ -1,6 +1,9 @@
 package io.github.giodmz.springarchitecture.todos;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("todos")
@@ -14,7 +17,13 @@ public class TodoController {
 
     @PostMapping
     public TodoEntity salvar(@RequestBody TodoEntity todo) {
+        try {
         return this.service.salvar(todo);
+        } catch (IllegalArgumentException ex) {
+            var msgError = ex.getMessage();
+            // throw new ResponseStatusException(HttpStatus.BAD_REQUEST, msgError); // quando tem erro no cliente
+            throw new ResponseStatusException(HttpStatus.CONFLICT, msgError); // quando há um conflito (ex: codigo ja cadastrado)
+        }
     }
 
     @PutMapping("{id}")
