@@ -21,7 +21,7 @@ public class DatabaseConfiguration {
     @Value("${spring.datasource.driver-class-name}")
     String driver;
 
-    @Bean
+    // @Bean
     public DataSource dataSource(){
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setUrl(url);
@@ -44,6 +44,8 @@ public class DatabaseConfiguration {
         config.setMinimumIdle(1); // tamanho mínimo da pool
         config.setPoolName("library-db-pool"); // nome da pool
         config.setMaxLifetime(600000); // tempo máximo de uma conexão (em ms)
+        config.setConnectionTimeout(100000); // tempo máximo que vai ser gasto para um conexão
+        config.setConnectionTestQuery("select 1"); // query para testar o banco
 
         return new HikariDataSource(config);
     }
