@@ -32,8 +32,8 @@ public class Livro {
     private GeneroLivro genero;
 
     @Column(name = "preco", precision = 18, scale = 2) // 18 posições 2 sendo decimais
-    private Double preco;
-    // private BigDecimal preco;
+    private BigDecimal preco;
+    // private Double preco;
 
     @ManyToOne
     @JoinColumn(name = "id_autor") // mapeamento da coluna
