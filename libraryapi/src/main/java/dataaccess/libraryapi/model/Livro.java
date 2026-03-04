@@ -1,6 +1,8 @@
 package dataaccess.libraryapi.model;
 
+import dataaccess.libraryapi.model.enums.GeneroLivro;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "livro")
+@Data
 public class Livro {
 
     @Id
@@ -24,11 +27,13 @@ public class Livro {
     @Column(name = "data_publicacao")
     private LocalDate dataPublicacao;
 
-    @Column(name = "genero", length = 150, nullable = false)
-    private String genero;
+    @Enumerated(EnumType.STRING) // evitar problemas caso a posição mude
+    @Column(name = "genero", length = 30, nullable = false)
+    private GeneroLivro genero;
 
     @Column(name = "preco", precision = 18, scale = 2) // 18 posições 2 sendo decimais
-    private BigDecimal preco;
+    private Double preco;
+    // private BigDecimal preco;
 
     @ManyToOne
     @JoinColumn(name = "id_autor") // mapeamento da coluna
