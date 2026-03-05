@@ -2,6 +2,7 @@ package dataaccess.libraryapi.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "autor")
 @Data
+@ToString
 public class Autor {
 
     @Id
@@ -29,18 +31,8 @@ public class Autor {
     @OneToMany(mappedBy = "autor") // está mapeado pela propriedade autor // diz que essa entidade não tem essa coluna apenas está mapeando
     private List<Livro> livros;
 
-    @Deprecated
-    public Autor(){
-
-    }
-
     /* Não é necessário mapear as columns, Spring faz isso automaticamente quando os nomes são iguais
     aos da database
     * */
-
-
-
-
-
 
 }
