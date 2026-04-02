@@ -1,4 +1,4 @@
-package com.mh.hunt.enums;
+package com.mh.hunt.enums.hunter;
 
 public enum Weapon {
     GS,
