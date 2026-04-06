@@ -74,5 +74,7 @@ public class LivroRepositoryTest {
 
         livroRepository.save(livroParaAtualizar);
 
+        System.out.println("Novo autor do livro (" + livroParaAtualizar.getTitulo() + "): " + livroParaAtualizar.getAutor().getNome());
+
     }
 }
