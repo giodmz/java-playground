@@ -35,7 +35,10 @@ public class Livro {
     private BigDecimal preco;
     // private Double preco;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(// cascade = CascadeType.ALL
+            // fetch = FetchType.EAGER -> EAGER é o padrão, vai buscar tudo
+            fetch = FetchType.LAZY // Lazy só vai buscar o que for necessário, ou seja, se buscar um livro não vai buscar o autor também
+    )
     @JoinColumn(name = "id_autor") // mapeamento da coluna
     private Autor autor;
 }

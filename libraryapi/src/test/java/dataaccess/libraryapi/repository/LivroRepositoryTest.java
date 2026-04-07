@@ -3,6 +3,7 @@ package dataaccess.libraryapi.repository;
 import dataaccess.libraryapi.model.Autor;
 import dataaccess.libraryapi.model.Livro;
 import dataaccess.libraryapi.model.enums.GeneroLivro;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -76,6 +77,15 @@ public class LivroRepositoryTest {
 
         System.out.println("Novo autor do livro (" + livroParaAtualizar.getTitulo() + "): " + livroParaAtualizar.getAutor().getNome());
 
+    }
+
+    @Test
+    @Transactional // Transactional vai abrir uma transação para que o autor possa ser buscado mesmo// com o mét.odo LAZY de chamada
+    public void findAutorDoLivro(){
+        UUID id = UUID.fromString("40350e70-8be3-4b22-8ec2-164a143708ad");
+        Livro livro = livroRepository.findById(id).orElse(null);
+
+        System.out.println("Autor: " + livro.getAutor().getNome() + " | Livro: " + livro.getTitulo());
     }
 
 
