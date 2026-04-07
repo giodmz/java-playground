@@ -77,4 +77,17 @@ public class AutorRepositoryTest {
         System.out.println("Número de autores: " + autores);
     }
 
+    @Test
+    public void atualizarNacionalidadeAutor(){
+        var id = UUID.fromString("a8c4b612-4faa-45fb-86d1-41b83122c722");
+        Optional<Autor> autorParaAtualizar = repository.findById(id);
+
+        var autorEncontrado = autorParaAtualizar.get();
+        autorEncontrado.setNacionalidade("Estadunidense");
+
+        repository.save(autorEncontrado);
+
+        System.out.println("Autor atualizado: " + autorEncontrado.getNome());
+
+    }
 }
