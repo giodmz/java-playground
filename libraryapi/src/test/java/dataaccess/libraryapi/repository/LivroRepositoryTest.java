@@ -80,7 +80,7 @@ public class LivroRepositoryTest {
     }
 
     @Test
-    @Transactional // Transactional vai abrir uma transação para que o autor possa ser buscado mesmo// com o mét.odo LAZY de chamada
+    // @Transactional // Transactional vai abrir uma transação para que o autor possa ser buscado mesmo// com o mét.odo LAZY de chamada
     public void findAutorDoLivro(){
         UUID id = UUID.fromString("40350e70-8be3-4b22-8ec2-164a143708ad");
         Livro livro = livroRepository.findById(id).orElse(null);

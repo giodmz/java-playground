@@ -28,7 +28,7 @@ public class Autor {
     @Column(name = "nacionalidade", length = 50, nullable = false)
     private String nacionalidade;
 
-    @OneToMany(mappedBy = "autor") // está mapeado pela propriedade autor // diz que essa entidade não tem essa coluna apenas está mapeando
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL) // está mapeado pela propriedade autor // diz que essa entidade não tem essa coluna apenas está mapeando
     private List<Livro> livros;
 
     /* Não é necessário mapear as columns, Spring faz isso automaticamente quando os nomes são iguais

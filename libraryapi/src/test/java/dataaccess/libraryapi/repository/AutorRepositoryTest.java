@@ -1,12 +1,16 @@
 package dataaccess.libraryapi.repository;
 
 import dataaccess.libraryapi.model.Autor;
+import dataaccess.libraryapi.model.Livro;
+import dataaccess.libraryapi.model.enums.GeneroLivro;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,6 +20,9 @@ public class AutorRepositoryTest {
 
     @Autowired
     AutorRepository repository;
+
+    @Autowired
+    LivroRepository livroRepository;
 
     @Test
     void salvarAutorTest(){
@@ -90,4 +97,46 @@ public class AutorRepositoryTest {
         System.out.println("Autor atualizado: " + autorEncontrado.getNome());
 
     }
+
+    @Test
+    public void registrarAutorComLivro(){
+
+        Autor autor = new Autor();
+        autor.setNome("Chris Redfield");
+        autor.setNacionalidade("Americano");
+        autor.setDataNascimento(LocalDate.of(1978, 4, 20));
+        repository.save(autor);
+
+        Livro livro = new Livro();
+        livro.setIsbn("19402-93281");
+        livro.setPreco(BigDecimal.valueOf(100));
+        livro.setTitulo("Resident Evil");
+        livro.setDataPublicacao(LocalDate.of(1998, 3, 21));
+        livro.setGenero(GeneroLivro.MISTERIO);
+        livro.setAutor(autor);
+
+        Livro livro2 = new Livro();
+        livro2.setIsbn("77771-22222");
+        livro2.setPreco(BigDecimal.valueOf(100));
+        livro2.setTitulo("Resident Evil 2");
+        livro2.setDataPublicacao(LocalDate.of(1999, 3, 21));
+        livro2.setGenero(GeneroLivro.MISTERIO);
+        livro2.setAutor(autor);
+
+
+        List<Livro> livros = new ArrayList<Livro>();
+        livros.add(livro);
+        livros.add(livro2);
+
+        livroRepository.saveAll(livros);
+
+        autor.setLivros(livros);
+
+        System.out.println("Autor: " + autor.getNome() + "Livros salvos: " + livro.getTitulo() + " | " + livro2.getTitulo());
+
+
+    }
+
+
+
 }
