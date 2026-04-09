@@ -11,7 +11,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "autor")
 @Data
-@ToString
+@ToString(exclude = "livros")
 public class Autor {
 
     @Id
@@ -28,7 +28,7 @@ public class Autor {
     @Column(name = "nacionalidade", length = 50, nullable = false)
     private String nacionalidade;
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL) // está mapeado pela propriedade autor // diz que essa entidade não tem essa coluna apenas está mapeando
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // está mapeado pela propriedade autor // diz que essa entidade não tem essa coluna apenas está mapeando
     private List<Livro> livros;
 
     /* Não é necessário mapear as columns, Spring faz isso automaticamente quando os nomes são iguais

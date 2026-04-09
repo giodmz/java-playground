@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootTest
@@ -86,6 +87,17 @@ public class LivroRepositoryTest {
         Livro livro = livroRepository.findById(id).orElse(null);
 
         System.out.println("Autor: " + livro.getAutor().getNome() + " | Livro: " + livro.getTitulo());
+    }
+
+    @Test
+    public void findLivrosDoAutor(){
+        UUID id = UUID.fromString("f14abc23-33c6-44be-a1a1-1e5f09fbca27");
+        Autor autor = autorRepository.findById(id).orElse(null);
+
+        List<Livro> livrosLista = livroRepository.findByAutor(autor);
+        autor.setLivros(livrosLista);
+
+        autor.getLivros().forEach(System.out::println);
     }
 
 
