@@ -137,6 +137,16 @@ public class AutorRepositoryTest {
 
     }
 
+    @Test
+    public void findAutorPeloNomeEDataNascimento(){
+        var nome = "Claire Redfield";
+        var dataNascimento = LocalDate.of(2002, 5, 15);
+
+        List<Autor> autor = repository.findByNomeAndDataNascimento(nome, dataNascimento);
+        autor.forEach(System.out::println);
+
+    }
+
 
 
 }

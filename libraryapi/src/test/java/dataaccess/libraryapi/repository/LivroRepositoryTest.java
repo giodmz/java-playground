@@ -100,5 +100,36 @@ public class LivroRepositoryTest {
         autor.getLivros().forEach(System.out::println);
     }
 
+    @Test
+    public void findLivroPeloTitulo() {
+        List<Livro> livro = livroRepository.findByTitulo("Resident Evil");
+        livro.forEach(System.out::println);
+    }
+
+    @Test
+    public void findLivroPeloIsbn(){
+        List<Livro> livro = livroRepository.findByIsbn("77771-22222");
+        livro.forEach(System.out::println);
+    }
+
+    @Test
+    public void findLivroPeloTituloEIsbn(){
+        var titulo = "Resident Evil";
+        var isbn = "19402-93281";
+
+        List<Livro> livro = livroRepository.findByTituloAndIsbn(titulo, isbn);
+        livro.forEach(System.out::println);
+
+    }
+
+    @Test
+    public void findLivroDataAndPreco(){
+        var data = LocalDate.of(1998,03,21);
+        var preco = BigDecimal.valueOf(100);
+
+        List<Livro> livro = livroRepository.findByDataPublicacaoAndPreco(data, preco);
+        livro.forEach(System.out::println);
+    }
+
 
 }
