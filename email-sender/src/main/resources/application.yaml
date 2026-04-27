@@ -1,0 +1,34 @@
+spring:
+  mail:
+    # Host do servidor SMTP (Gmail neste exemplo)
+    host: smtp.gmail.com
+
+    # Porta STARTTLS do Gmail
+    port: 587
+
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+
+    properties:
+      mail:
+        smtp:
+          # Habilita autenticação SMTP
+          auth: true
+
+          starttls:
+            # Habilita criptografia STARTTLS (obrigatório para Gmail na porta 587)
+            enable: true
+            # Exige que o servidor suporte STARTTLS
+            required: true
+
+          # Timeout de conexão em milissegundos (10 segundos)
+          connectiontimeout: 10000
+
+          # Timeout de leitura em milissegundos (10 segundos)
+          timeout: 10000
+
+logging:
+  level:
+    # Reduz logs desnecessários do Spring no console
+    root: WARN
+    com.emailsender: INFO
