@@ -3,13 +3,13 @@ package com.pedido_service.controller;
 import com.pedido_service.dto.PedidoDTO;
 import com.pedido_service.service.PedidoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
 @RestController
+@RequestMapping("/pedidos")
 public class PedidoController{
 
 
@@ -20,7 +20,7 @@ public class PedidoController{
     }
 
     @PostMapping
-    public ResponseEntity<Void> postPedido(PedidoDTO obj){
+    public ResponseEntity<Void> postPedido(@RequestBody PedidoDTO obj){
         service.printDTO(obj);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -1,8 +1,5 @@
 package com.pedido_service.dto;
 
-
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.UUID;
 
 public class PedidoDTO {
@@ -11,7 +8,7 @@ public class PedidoDTO {
     String description;
     Double value;
 
-    public PedidoDTO(@RequestBody String description, UUID id, Double value) {
+    public PedidoDTO(String description, UUID id, Double value) {
         this.description = description;
         this.id = id;
         this.value = value;
